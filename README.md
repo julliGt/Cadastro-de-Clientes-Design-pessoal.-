@@ -1,87 +1,68 @@
-# Cadastro de Clientes – Projeto em Python
+# Definição da classe Cliente, que representa um cliente com nome, email e telefone
+class Cliente:
+    # Método construtor: é chamado quando criamos um novo Cliente
+    def __init__(self, nome, email, telefone):
+        self.nome = nome          # Armazena o nome do cliente
+        self.email = email        # Armazena o email do cliente
+        self.telefone = telefone  # Armazena o telefone do cliente
 
-Este é um projeto simples que desenvolvi usando Python, como parte da matéria **Design Profissional**, do curso de **Análise e Desenvolvimento de Sistemas** da **Cruzeiro do Sul Virtual**.
+    # Método para mostrar os dados do cliente formatados
+    def mostrar(self):
+        print(f"Nome: {self.nome}")
+        print(f"Email: {self.email}")
+        print(f"Telefone: {self.telefone}")
+        print("-------------------------")  # Linha separadora para visualização
 
-A ideia foi construir um sistema básico de cadastro de clientes que roda diretamente no terminal. Foi um exercício prático para aplicar conceitos como estrutura de dados, classes, métodos e interação com o usuário via menu.
 
----
+# Função principal que controla o fluxo do programa
+def main():
+    clientes = []  # Lista para armazenar os objetos Cliente cadastrados
 
-## Tecnologias e ferramentas utilizadas
+    while True:  # Loop infinito para mostrar o menu até o usuário escolher sair
+        # Exibe as opções para o usuário
+        print("\n1. Cadastrar cliente")
+        print("2. Listar clientes")
+        print("3. Sair")
 
-- **Linguagem:** Python 3
-- **Paradigma:** Programação orientada a objetos (POO)
-- **Ambiente:** Aplicativo de codificação no celular (usei o **Pydroid 3**, mas pode ser qualquer outro que execute Python)
+        # Recebe a opção do usuário como string
+        opcao = input("Escolha uma opção: ")
 
----
+        # Se o usuário escolheu cadastrar cliente
+        if opcao == '1':
+            # Solicita dados do cliente
+            nome = input("Nome: ")
+            email = input("Email: ")
+            telefone = input("Telefone: ")
 
-## Como executar o projeto
+            # Cria um novo objeto Cliente com os dados informados
+            c = Cliente(nome, email, telefone)
 
-Esse código funciona em qualquer ambiente que rode Python. Se você estiver no celular, pode usar um app como:
+            # Adiciona o cliente na lista
+            clientes.append(c)
 
-- **Pydroid 3** (Android)
-- **QPython**
-- **Replit** (via navegador)
-- **Google Colab** (para testes simples)
+            print("Cliente cadastrado com sucesso!")
 
-Se estiver no computador:
-- Qualquer IDE (VSCode, PyCharm, Thonny, etc.)
+        # Se o usuário escolheu listar os clientes cadastrados
+        elif opcao == '2':
+            # Verifica se a lista está vazia
+            if not clientes:
+                print("Nenhum cliente cadastrado.")
+            else:
+                # Para cada cliente na lista, chama o método mostrar() para exibir dados
+                for c in clientes:
+                    c.mostrar()
 
-**Passos:**
-1. Copie o código para um arquivo chamado `cadastro_clientes.py`
-2. Execute o código em qualquer interpretador Python
-3. Use o menu que aparece no terminal para interagir com o sistema
+        # Se o usuário escolheu sair do programa
+        elif opcao == '3':
+            print("Encerrando...")
+            break  # Encerra o loop while e termina o programa
 
----
+        else:
+            # Caso o usuário digite uma opção inválida
+            print("Opção inválida.")
 
-## Funcionalidades do sistema
 
-- Cadastrar um novo cliente
-- Listar todos os clientes cadastrados
-- Buscar cliente pelo nome
-- Remover cliente
-- Sair do sistema
-
----
-
-## Como usar cada função
-
-### 1. **Cadastrar cliente**
-Você escolhe a opção `1` e informa:
-- Nome
-- E-mail
-- Telefone  
-O cliente será adicionado à lista.
-
-### 2. **Listar clientes**
-Escolha a opção `2` para ver todos os clientes cadastrados até o momento.
-
-### 3. **Buscar cliente**
-Na opção `3`, digite parte do nome para procurar clientes com aquele nome.
-
-### 4. **Remover cliente**
-A opção `4` permite digitar o nome de alguém cadastrado e removê-lo da lista.
-
-### 5. **Sair**
-Opção `5` finaliza o programa.
-
----
-
-## Exemplo de uso (simulação)
-
-```plaintext
-1. Cadastrar cliente
-2. Listar clientes
-3. Buscar cliente
-4. Remover cliente
-5. Sair
-
-Escolha uma opção: 1
-Nome: Maria
-Email: maria@email.com
-Telefone: 11999999999
-Cliente cadastrado com sucesso!
-
-Escolha uma opção: 2
-Nome: Maria
-Email: maria@email.com
-Telefone: 11999999999
+# Ponto de entrada do programa
+# Esse if garante que o main() só seja executado se o script for rodado diretamente
+if __name__ == "__main__":
+    main()
